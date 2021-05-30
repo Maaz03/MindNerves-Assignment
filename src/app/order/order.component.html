@@ -1,0 +1,84 @@
+<div class="row">
+  <h1>
+    Enter Order
+    <hr>
+  </h1>
+</div>
+<form [formGroup]="orderForm">
+<div class="row">
+    Order No <input type="text" class="form-control"  formControlName="orderNo">
+    Purchase Date <input type="date"  class="form-control" formControlName="purchaseDate">
+</div>
+<br>
+<div class="row">
+  Customer Name <input type="text" class="form-control" formControlName="customerName">
+  Total Amount <input type="number" class="form-control" formControlName="totalAmount">
+</div>
+<br>
+<div class="row">
+  <h1>
+    Add Items
+    <hr>
+  </h1>
+</div>
+<div class="row">
+  <button type="button" class="button" style="background-color:blue;" (click)="addItems()">
+    Add Others
+  </button>
+</div>
+<br>
+<table>
+  <thead>
+    <th>Item Name</th>
+    <th>Quantity</th>
+    <th>Price per unit</th>
+    <th>Total Price</th>
+  </thead>
+  <tbody>
+    <ng-container formArrayName="itemsList">
+      <tr *ngFor="let item of items.controls; let i = index"
+       formGroupName="{{ i }}">
+        <td>
+          <input type="text" class="form-control" formControlName="itemName">
+        </td>
+        <td>
+          <input type="number" class="form-control" formControlName="quantity">
+        </td>
+        <td>
+          <input type="number" class="form-control" formControlName="pricePerUnit">
+        </td>
+        <td>
+          <input type="number" class="form-control" formControlName="totalAmount">
+        </td>&nbsp;&nbsp;
+        <button type="button" class="button" style="background-color:red;" (click)="deleteRow(i)">
+          Remove
+        </button>
+      </tr>
+    </ng-container>
+  </tbody>
+</table>
+<br>
+<br>
+<br>
+<br>
+<div class="row">
+  <button type="button" class="button" style="background-color:blue;" (click)="save()">
+    Save
+  </button>&nbsp;&nbsp;
+  <button type="button" class="button" style="background-color:gray;" (click)="reset()">
+    Reset
+  </button>
+</div>
+</form>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="row">
+  <button type="button" class="viewDetails" (click)="viewDetails()">
+    View Details
+  </button>
+</div>
